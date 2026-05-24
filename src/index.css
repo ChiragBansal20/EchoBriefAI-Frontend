@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,400;1,8..60,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+/*
+  EchoBrief AI — Aurora Sunrise Theme
+  Light : warm pearl white + saffron-rose-violet gradient
+  Dark  : midnight navy + electric teal-violet glow
+*/
+
+@layer base {
+  :root {
+    --background:           34  60% 98%;
+    --foreground:           230 35%  8%;
+
+    --card:                  0   0% 100%;
+    --card-foreground:      230 35%  8%;
+
+    --popover:               0   0% 100%;
+    --popover-foreground:   230 35%  8%;
+
+    /* Saffron-orange primary */
+    --primary:              28  95% 52%;
+    --primary-foreground:    0   0% 100%;
+    --primary-glow:         18 100% 60%;
+
+    --secondary:            34  40% 94%;
+    --secondary-foreground: 230 35% 12%;
+
+    --muted:                34  30% 92%;
+    --muted-foreground:     230 12% 46%;
+
+    /* Rose-violet accent */
+    --accent:               338 90% 55%;
+    --accent-foreground:      0  0% 100%;
+
+    --destructive:            4 86% 55%;
+    --destructive-foreground: 0  0% 100%;
+
+    --border:               34  25% 87%;
+    --input:                34  25% 87%;
+    --ring:                 28  95% 52%;
+
+    --headline:             230 40%  5%;
+    --byline:               230 10% 46%;
+    --rule:                 34  20% 84%;
+    --live:                 142 72% 40%;
+
+    --radius: 0.5rem;
+    --shadow-card: 0 1px 4px hsl(28 60% 20% / .07), 0 1px 2px hsl(28 60% 20% / .04);
+    --shadow-hover: 0 16px 40px hsl(28 95% 52% / .18);
+
+    --sidebar-background:   34  60% 98%;
+    --sidebar-foreground:   230 35%  8%;
+    --sidebar-primary:      28  95% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent:       34  40% 94%;
+    --sidebar-accent-foreground: 230 35% 12%;
+    --sidebar-border:       34  25% 87%;
+    --sidebar-ring:         28  95% 52%;
+  }
+
+  .dark {
+    --background:           224 30%  6%;
+    --foreground:           210 20% 94%;
+
+    --card:                 224 28% 10%;
+    --card-foreground:      210 20% 94%;
+
+    --popover:              224 28% 10%;
+    --popover-foreground:   210 20% 94%;
+
+    /* Electric Teal primary */
+    --primary:              174 90% 48%;
+    --primary-foreground:   224 30%  6%;
+    --primary-glow:         185 95% 58%;
+
+    --secondary:            224 24% 16%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted:                224 24% 16%;
+    --muted-foreground:     210 12% 58%;
+
+    /* Violet accent */
+    --accent:               262 90% 70%;
+    --accent-foreground:    224 30%  6%;
+
+    --destructive:            4 75% 58%;
+    --destructive-foreground: 0  0% 100%;
+
+    --border:               224 22% 20%;
+    --input:                224 22% 20%;
+    --ring:                 174 90% 48%;
+
+    --headline:             210 20% 97%;
+    --byline:               210 12% 58%;
+    --rule:                 224 22% 24%;
+    --live:                 142 80% 50%;
+
+    --shadow-card: 0 2px 8px hsl(224 50% 4% / .45);
+    --shadow-hover: 0 20px 48px hsl(174 90% 48% / .22);
+
+    --sidebar-background:   224 28% 10%;
+    --sidebar-foreground:   210 20% 94%;
+    --sidebar-primary:      174 90% 48%;
+    --sidebar-primary-foreground: 224 30% 6%;
+    --sidebar-accent:       224 24% 18%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border:       224 22% 20%;
+    --sidebar-ring:         174 90% 48%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+}
+
+@layer components {
+  .headline {
+    @apply font-serif font-bold tracking-tight leading-[1.1];
+    color: hsl(var(--headline));
+  }
+  .byline {
+    @apply font-sans text-xs uppercase tracking-wider;
+    color: hsl(var(--byline));
+  }
+
+  .article-card {
+    @apply bg-card border border-border rounded-xl overflow-hidden;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow .3s ease, transform .3s ease;
+  }
+  .article-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+  }
+
+  .hover-lift  { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg; }
+  .hover-scale { @apply transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]; }
+
+  /* Animated sunrise gradient on brand text */
+  .gradient-text {
+    background: linear-gradient(90deg,
+      hsl(var(--primary)),
+      hsl(var(--primary-glow)),
+      hsl(var(--accent)),
+      hsl(var(--primary))
+    );
+    background-size: 260% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-x 5s ease infinite;
+  }
+
+  /* Card glow on primary */
+  .btn-glow { box-shadow: 0 0 20px hsl(var(--primary) / .45); }
+  .btn-glow:hover { box-shadow: 0 0 36px hsl(var(--primary) / .7); }
+
+  /* Live badge */
+  .live-dot { animation: blink 1.3s ease-in-out infinite; }
+
+  /* Stagger entrance */
+  .stagger-children > * {
+    opacity: 0;
+    animation: fade-up .5s ease-out forwards;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: .05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: .12s; }
+  .stagger-children > *:nth-child(3) { animation-delay: .19s; }
+  .stagger-children > *:nth-child(4) { animation-delay: .26s; }
+  .stagger-children > *:nth-child(5) { animation-delay: .33s; }
+  .stagger-children > *:nth-child(6) { animation-delay: .40s; }
+  .stagger-children > *:nth-child(n+7) { animation-delay: .46s; }
+
+  /* Glass panel used in dark hero */
+  .glass {
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes blink   { 0%,100%{opacity:1} 50%{opacity:.2} }
+@keyframes fade-up { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fade-in { from{opacity:0} to{opacity:1} }
+@keyframes scale-in{ from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
+@keyframes gradient-x {
+  0%,100%{background-position:0% center}
+  50%{background-position:100% center}
+}
+@keyframes float {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes shimmer {
+  from{background-position:-200% center}
+  to{background-position:200% center}
+}
+@keyframes slide-in-right {
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ── Scrollbar hide everywhere ── */
+.scrollbar-hide::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar { display:none; }
+.scrollbar-hide,
+.overflow-x-auto { -ms-overflow-style:none; scrollbar-width:none; }
